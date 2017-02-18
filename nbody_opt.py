@@ -1,4 +1,6 @@
 """
+    Author: modification part by Kaiwen Liu
+    Date: 02/18/2017
     N-body simulation.
 
     final optimized 
