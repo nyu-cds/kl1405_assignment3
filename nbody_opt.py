@@ -70,6 +70,7 @@ def advance(dt, body_combinations):
         ([x1, y1, z1], v1, m1) = BODIES_local[body1]
         ([x2, y2, z2], v2, m2) = BODIES_local[body2]
         (dx, dy, dz) = (x1-x2, y1-y2, z1-z2)
+        # reduce function overhead
         v1[0] -= dx * m2 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
         v1[1] -= dy *  m2 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
         v1[2] -= dz *  m2 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
@@ -81,6 +82,7 @@ def advance(dt, body_combinations):
         
     for body in bodykeys:
         (r, [vx, vy, vz], m) = BODIES_local[body]
+        # reduce function overhead
         r[0] += dt * vx
         r[1] += dt * vy
         r[2] += dt * vz
@@ -99,6 +101,7 @@ def report_energy(body_combinations,e=0.0):
     for (body1, body2) in body_combinations:
         ((x1, y1, z1), v1, m1) = BODIES_local[body1]
         ((x2, y2, z2), v2, m2) = BODIES_local[body2]
+        # reduce function overhead
         (dx, dy, dz) = (x1-x2, y1-y2, z1-z2)
         e -= (m1 * m2) / ((dx * dx + dy * dy + dz * dz) ** 0.5)
         # seenit.append(body1)
