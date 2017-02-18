@@ -11,6 +11,9 @@
 
 """
 import itertools
+import timeit
+
+
 
 PI = 3.14159265358979323
 SOLAR_MASS = 4 * PI * PI
@@ -60,11 +63,9 @@ def advance(dt, body_combinations):
 
     BODIES_local = BODIES
     bodykeys = BODIES_local.keys()
-    # body_combinations = list(itertools.combinations(BODIES_local, 2))
     
     # seenit is a uesless list when we use itertools combinations, in nbody_2 I used a set instead of a list.
-    # seenit = []
-    
+
 
     for (body1, body2) in body_combinations:
         ([x1, y1, z1], v1, m1) = BODIES_local[body1]
@@ -77,7 +78,6 @@ def advance(dt, body_combinations):
         v2[0] += dx *  m1 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
         v2[1] += dy *  m1 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
         v2[2] += dz *  m1 * dt *((dx * dx + dy * dy + dz * dz) ** (-1.5))
-        # seenit.append(body1)
 
         
     for body in bodykeys:
@@ -95,8 +95,6 @@ def report_energy(body_combinations,e=0.0):
     '''
     BODIES_local = BODIES
     bodykeys = BODIES_local.keys()
-    # body_combinations = list(itertools.combinations(BODIES_local, 2))
-    # seenit = []
     
     for (body1, body2) in body_combinations:
         ((x1, y1, z1), v1, m1) = BODIES_local[body1]
@@ -104,7 +102,6 @@ def report_energy(body_combinations,e=0.0):
         # reduce function overhead
         (dx, dy, dz) = (x1-x2, y1-y2, z1-z2)
         e -= (m1 * m2) / ((dx * dx + dy * dy + dz * dz) ** 0.5)
-        # seenit.append(body1)
         
     for body in bodykeys:
         (r, [vx, vy, vz], m) = BODIES_local[body]
@@ -142,7 +139,6 @@ def nbody(loops, reference, iterations, body_combinations):
     offset_momentum(BODIES[reference])
 
     for _ in range(loops):
-        # report_energy(body_combinations)
         for _ in range(iterations):
             advance(0.01, body_combinations)
         print(report_energy(body_combinations))
@@ -150,4 +146,6 @@ def nbody(loops, reference, iterations, body_combinations):
 if __name__ == '__main__':
     body_combinations = list(itertools.combinations(BODIES, 2))
     nbody(100, 'sun', 20000, body_combinations)
+
+ 
 
