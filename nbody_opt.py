@@ -143,6 +143,8 @@ def nbody(loops, reference, iterations, body_combinations):
             advance(0.01, body_combinations)
         print(report_energy(body_combinations))
 
+# time method: run within Sublime Text2
+
 if __name__ == '__main__':
     body_combinations = list(itertools.combinations(BODIES, 2))
     nbody(100, 'sun', 20000, body_combinations)
