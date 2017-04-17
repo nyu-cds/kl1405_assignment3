@@ -1,6 +1,7 @@
 # part of code from lecture https://nyu-cds.github.io/python-mpi/02-messagepassing/
 """
-    Assignment 10 MPI
+    Assignment 10 MPI part 2
+
     Kaiwen Liu
 
 """
@@ -22,7 +23,7 @@ if rank == 0:
         
 
     # check if it is in range of 0 and 100
-    if ranNum< 0: 
+    if ranNum < 0: 
         print('invalid input')
     if ranNum > 100: 
         print('invalid input')  
@@ -42,5 +43,5 @@ else:
         comm.Send(ranNum, dest=0)
         print('Process', rank, 'received the number:',ranNum[0])
     # process i sends the value to process i+1 which multiplies it by i+1.
-    elif rank<size-1:
+    elif rank < size - 1:
         comm.Send(ranNum, dest=rank+1)
