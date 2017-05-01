@@ -46,9 +46,11 @@ def compute_mandel(min_x, max_x, min_y, max_y, image, iters):
     x = tx + bx * bw
     y = ty + by * bh
 
-    real = min_x + x * pixel_size_x
-    imag = min_y + y * pixel_size_y
-    image[y, x] = mandel(real, imag, iters)
+    for x in range(x, width):
+        real = min_x + x * pixel_size_x
+        for y in range(y, height):
+            imag = min_y + y * pixel_size_y
+            image[y, x] = mandel(real, imag, iters)
     
 if __name__ == '__main__':
     image = np.zeros((1024, 1536), dtype = np.uint8)
