@@ -9,7 +9,8 @@ if __name__ == '__main__':
 
 	nums = sc.parallelize(range(1, 1001))
 	#Use fold method to creat a program that calculates the product of all the numbers from 1 to 1000 	
-	#and prints the result.   # https://spark.apache.org/docs/1.1.1/api/python/pyspark.rdd.RDD-class.html#fold product = nums.fold(1, mul)
+	#and prints the result.   # https://spark.apache.org/docs/1.1.1/api/python/pyspark.rdd.RDD-class.html#fold 
+	product = nums.fold(1, mul)
 
 	print(product)
 
